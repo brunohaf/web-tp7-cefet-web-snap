@@ -15,7 +15,7 @@ const showBaloonContent = (evt) => {
 }
 
 const hideBaloonContent = () => {
-    baloonEl.innerHTML = "";
+    baloonEl.innerHTML = '';
 }
 
 marksListEl.forEach(mark => mark.addEventListener('mouseover', showBaloonContent));
