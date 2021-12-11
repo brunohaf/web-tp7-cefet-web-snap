@@ -11,7 +11,6 @@ const showBaloonContent = (evt) => {
     baloonEl.innerHTML = 
         `<h2>${targetMarkElAttribs.titulo}</h2>
         <p>${targetMarkElAttribs.conteudo}</p>`
-        console.log(baloonEl)
 }
 
 const hideBaloonContent = () => {

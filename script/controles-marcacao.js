@@ -1,11 +1,19 @@
 const markCheckboxClassQuery = '#visibilidade-das-marcacoes';
-let ocultMarksQuery = '.marcacao'
-let markCheckedBoxEl = document.querySelector(markCheckboxClassQuery);
-let marksEl = document.querySelector(ocultMarksQuery);
+const ocultMarksQuery = '.marcacao'
+const selectedclassTag = 'selecionada';
+const markCheckedBoxEl = document.querySelector(markCheckboxClassQuery);
+const marksEl = document.querySelectorAll(ocultMarksQuery);
 
-const enableDisableMarks = (evt) => {
+const toggleMarks = (evt) => {
     let targetEl = evt.currentTarget;
-    marksEl.parentNode.classList.toggle(targetEl.value)
+    marksEl[0].parentNode.classList.toggle(targetEl.value);
 }
 
-markCheckedBoxEl.addEventListener('change', enableDisableMarks);
+const selectMarks = (evt) => {
+    let targetEl = evt.currentTarget;
+    targetEl.classList.toggle(selectedclassTag);
+    console.log(targetEl);
+}
+
+markCheckedBoxEl.addEventListener('change', toggleMarks);
+marksEl.forEach(mark => mark.addEventListener('click', selectMarks));
