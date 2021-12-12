@@ -6,13 +6,17 @@ const markCheckedBoxEl = document.querySelector(markCheckboxClassQuery);
 const sectionControlsEl = document.querySelector(sectionControls);
 const marksEl = document.querySelectorAll(ocultMarksQuery);
 
-Object.defineProperty(Element.prototype, 'setMarkingPositionProperties',{
-    value: function setMarkingPositionProperties(referencePropertiesData) {
+Object.defineProperty(Element.prototype, 'setControlSectionProperties',{
+    value: function setControlSectionProperties(referencePropertiesData) {
         let referenceStyle = referencePropertiesData.style;
+        let referenceData = referencePropertiesData.dataset;
         this.querySelector('#y-da-marcacao').value = parseInt(referenceStyle.top)
         this.querySelector('#x-da-marcacao').value = parseInt(referenceStyle.left)
         this.querySelector('#largura-da-marcacao').value = parseInt(referenceStyle.width)
         this.querySelector('#altura-da-marcacao').value = parseInt(referenceStyle.width)
+        this.querySelector('#titulo-da-marcacao').value = referenceData.titulo;
+        this.querySelector('#conteudo-da-marcacao').value = referenceData.conteudo;
+        this.querySelector('#cor-da-marcacao').value = referenceData.cor;
     },
     writable: true,
     configurable: true
@@ -26,7 +30,7 @@ const toggleMarks = (evt) => {
 const selectMarks = (evt) => {
     let targetEl = evt.currentTarget;
     targetEl.classList.toggle(selectedclassTag);
-    sectionControlsEl.setMarkingPositionProperties(targetEl)
+    sectionControlsEl.setControlSectionProperties(targetEl);
 }
 
 markCheckedBoxEl.addEventListener('change', toggleMarks);
