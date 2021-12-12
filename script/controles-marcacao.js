@@ -17,6 +17,10 @@ Object.defineProperty(Element.prototype, 'setControlSectionProperties',{
         this.querySelector('#titulo-da-marcacao').value = referenceData.titulo;
         this.querySelector('#conteudo-da-marcacao').value = referenceData.conteudo;
         this.querySelector('#cor-da-marcacao').value = referenceData.cor;
+        let radios = this.querySelectorAll('input[type="radio"]')
+        let targetRadio = referencePropertiesData.classList.contains("formato-oval") ? 'formato-oval' : 'formato-retangular'
+        Array.prototype.find.call(radios, r => r.value === targetRadio).checked = true;
+        console.log(hey)
     },
     writable: true,
     configurable: true
