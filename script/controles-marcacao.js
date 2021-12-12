@@ -38,7 +38,6 @@ Object.defineProperty(Element.prototype, 'setMarkingProperties',{
         }
         else{
             let propertyId = `#${property.id}`
-            console.log(controlReferenceProperties.querySelector(propertyId).value)
             const pxValue = `${controlReferenceProperties.querySelector(propertyId).value}px`;
             const value = controlReferenceProperties.querySelector(propertyId).value;
             let referenceStyle = markElement.style;
@@ -49,9 +48,11 @@ Object.defineProperty(Element.prototype, 'setMarkingProperties',{
                 '#altura-da-marcacao':() => referenceStyle.height = pxValue,
                 '#titulo-da-marcacao':() => markElement.dataset.titulo = value,
                 '#conteudo-da-marcacao':() => markElement.dataset.conteudo = value,
-                '#cor-da-marcacao':() => markElement.dataset.cor = value
+                '#cor-da-marcacao':() => markElement.dataset.cor = value,
+                default: () => false
             } 
-            propertyToUpdateStrategy[propertyId]();
+            let task = propertyToUpdateStrategy[propertyId] || propertyToUpdateStrategy['default'];
+            task();
         }
     },
     writable: true,
